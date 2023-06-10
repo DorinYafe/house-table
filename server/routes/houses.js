@@ -15,6 +15,10 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const house = req.body;
+    house.risk = house.loanAmount / house.currentValue;
+    if (house.risk >= 0.5) {
+      house.risk = house.risk + 0.1;
+    }
     await House.create(house);
     res.json(house).status(201);
   } catch (error) {

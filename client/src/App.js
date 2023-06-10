@@ -1,29 +1,24 @@
-import { useEffct, useEffect, useState } from 'react';
-import axios from 'axios';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes as Switch,
+  Link,
+} from 'react-router-dom';
 import './App.css';
+import Home from './pages/Home';
+import CreateHouse from './pages/CreateHouse';
 
 function App() {
-  const [listOfHouses, setListOfHouses] = useState();
-
-  useEffect(() => {
-    axios.get('http://localhost:3002/houses').then((response) => {
-      setListOfHouses(response.data);
-    });
-  }, []);
-
   return (
     <div className='App'>
-      {listOfHouses &&
-        listOfHouses.map((value, key) => {
-          return (
-            <div className='house' key={key}>
-              <div className='title'>Address: {value.address}</div>
-              <div className='body'>Current value: {value.currentValue}</div>
-              <div className='body'>Loan amount: {value.loanAmount}</div>  
-              <div className='footer'>Risk: {value.risk}</div>
-            </div>
-          );
-        })}
+      <Router>
+        <Link to='/'>Go to home</Link>
+        <Link to='createhouse'>Create a house</Link>
+        <Switch>
+          <Route path='/' exact Component={Home} />
+          <Route path='/createhouse' exact Component={CreateHouse} />
+        </Switch>
+      </Router>
     </div>
   );
 }
