@@ -30,8 +30,8 @@ router.post('/', async (req, res) => {
     if (house.risk >= 0.5) {
       house.risk = house.risk + 0.1;
     }
-    await House.create(house);
-    res.json(house).status(201);
+    const newHouse = await House.create(house);
+    res.json(newHouse).status(201);
   } catch (error) {
     res.status(500);
     console.error(error);

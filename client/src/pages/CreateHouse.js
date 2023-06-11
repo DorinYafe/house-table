@@ -14,7 +14,7 @@ function CreateHouse() {
 
   const onSubmit = (data) => {
     axios.post('http://localhost:3002/houses', data).then((response) => {
-      navigate('/');
+      navigate(`/house/${response.data.id}`);
     });
   };
 
