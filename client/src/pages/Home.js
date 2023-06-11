@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Card from '../components/Crad/Card';
 
 function Home() {
   const navigate = useNavigate();
@@ -11,20 +12,20 @@ function Home() {
       setListOfHouses(response.data);
     });
   }, []);
+
+  const handleClick = (id) => {
+    navigate(`/house/${id}`);
+  };
   return (
     <div>
       {listOfHouses &&
         listOfHouses.map((value, key) => {
           return (
-            <div
-              className='house'
+            <Card
+              house={value}
               key={key}
-              onClick={() => navigate(`/house/${value.id}`)}>
-              <div className='title'>Address: {value.address}</div>
-              <div className='body'>Current value: {value.currentValue}</div>
-              <div className='body'>Loan amount: {value.loanAmount}</div>
-              <div className='footer'>Risk: {value.risk}%</div>
-            </div>
+              onClick={() => handleClick(value?.id)}
+            />
           );
         })}
     </div>

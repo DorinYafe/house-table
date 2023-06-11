@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Card from '../components/Crad/Card';
 
 function House() {
   const { id } = useParams();
@@ -12,14 +13,7 @@ function House() {
     });
   }, []);
 
-  return (
-    <div className='house'>
-      <div className='title'>Address: {house?.address}</div>
-      <div className='body'>Current value: {house?.currentValue}</div>
-      <div className='body'>Loan amount: {house?.loanAmount}</div>
-      <div className='footer'>Risk: {house?.risk}%</div>
-    </div>
-  );
+  return <Card house={house} />;
 }
 
 export default House;
