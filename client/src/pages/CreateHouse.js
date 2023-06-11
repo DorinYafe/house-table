@@ -1,9 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
 function CreateHouse() {
+  const navigate = useNavigate();
   const initialValues = {
     address: '',
     currentValue: '',
@@ -12,7 +14,7 @@ function CreateHouse() {
 
   const onSubmit = (data) => {
     axios.post('http://localhost:3002/houses', data).then((response) => {
-      console.log('greate!');
+      navigate('/');
     });
   };
 

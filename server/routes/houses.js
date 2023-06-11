@@ -12,6 +12,17 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/byId/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const house = await House.findByPk(id);
+    res.json(house).status(200);
+  } catch (error) {
+    res.status(500);
+    console.error(error);
+  }
+});
+
 router.post('/', async (req, res) => {
   try {
     const house = req.body;

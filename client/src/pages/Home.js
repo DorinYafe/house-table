@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Home() {
+  const navigate = useNavigate();
   const [listOfHouses, setListOfHouses] = useState();
 
   useEffect(() => {
@@ -14,7 +16,10 @@ function Home() {
       {listOfHouses &&
         listOfHouses.map((value, key) => {
           return (
-            <div className='house' key={key}>
+            <div
+              className='house'
+              key={key}
+              onClick={() => navigate(`/house/${value.id}`)}>
               <div className='title'>Address: {value.address}</div>
               <div className='body'>Current value: {value.currentValue}</div>
               <div className='body'>Loan amount: {value.loanAmount}</div>
