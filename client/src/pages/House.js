@@ -12,7 +12,14 @@ function House() {
     });
   }, []);
 
-  return <div>{house && house.address}</div>;
+  return (
+    <div className='house'>
+      <div className='title'>Address: {house?.address}</div>
+      <div className='body'>Current value: {house?.currentValue}</div>
+      <div className='body'>Loan amount: {house?.loanAmount}</div>
+      <div className='footer'>Risk: {house?.risk}%</div>
+    </div>
+  );
 }
 
 export default House;
