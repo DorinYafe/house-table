@@ -6,10 +6,8 @@
     insert your own DB password
 
 3.  In the server directory:
-    npm install
-    npm start
+    npm install -> npm start
 
 4.  In the client directory: 
-    npm install
-    npm start
+    npm install -> npm start
 
