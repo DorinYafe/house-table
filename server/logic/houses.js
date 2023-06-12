@@ -1,7 +1,15 @@
 const { House } = require('../models');
 
+const getAllHouses = async () => {
+  return House.findAll();
+};
+
 const getHouseById = async (id) => {
   return House.findByPk(id);
+};
+
+const createHouse = async (house) => {
+  return House.create(house);
 };
 
 const updateHouse = async (currentValue, loanAmount, risk, id) => {
@@ -18,6 +26,8 @@ const updateHouse = async (currentValue, loanAmount, risk, id) => {
 };
 
 module.exports = {
+  getAllHouses,
   getHouseById,
+  createHouse,
   updateHouse,
 };

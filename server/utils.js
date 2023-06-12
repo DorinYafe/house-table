@@ -1,5 +1,9 @@
 const calculateRisk = (currentValue, loanAmount) => {
-  return loanAmount / currentValue;
+  const risk = loanAmount / currentValue;
+  if (risk >= 0.5) {
+    return risk + 0.1;
+  }
+  return risk;
 };
 
 module.exports = {
