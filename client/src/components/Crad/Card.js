@@ -99,7 +99,16 @@ function Card({ house, onClick }) {
         </>
       )}
       <div className={classes.footer}>
-        <div>Risk: {house?.risk}%</div>
+        <div>
+          Risk:
+          <NumericFormat
+            style={{ marginLeft: '0.5rem' }}
+            value={house?.risk}
+            displayType='text'
+            suffix='%'
+            decimalScale={2}
+          />
+        </div>
         {!isEditMode && pathname !== '/' && (
           <Button type='button' text='Edit' onClick={handleClick} />
         )}
