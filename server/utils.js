@@ -1,3 +1,4 @@
+// Calaulate the risk 
 const calculateRisk = (currentValue, loanAmount) => {
   const risk = loanAmount / currentValue;
   if (risk >= 0.5) {

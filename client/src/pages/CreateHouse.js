@@ -15,7 +15,9 @@ function CreateHouse() {
 
   const onSubmit = (data) => {
     axios
+      // Create new house recored
       .post('http://localhost:3002/houses', data)
+      // And then navigate the user to the house recored page
       .then((response) => {
         navigate(`/house/${response.data.id}`);
       })

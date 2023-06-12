@@ -32,7 +32,9 @@ function Card({ house, onClick }) {
 
   const onSubmit = (data) => {
     axios
+      // Update a house recored by id
       .put(`http://localhost:3002/houses/byId/${house?.id}`, data)
+      // After updating the house recored, navigate the user back to home page
       .then(() => {
         navigate('/');
       })

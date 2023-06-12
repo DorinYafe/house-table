@@ -11,12 +11,14 @@ function House() {
 
   useEffect(() => {
     axios
+      // Get a house recored
       .get(`http://localhost:3002/houses/byId/${id}`)
       .then((response) => {
         setIsLoading(true);
         setHouse(response.data);
         setIsLoading(false);
       })
+      // In case there is an error, render its message to the user
       .catch((error) => setError(error.message));
   }, []);
 

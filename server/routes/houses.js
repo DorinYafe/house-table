@@ -9,6 +9,7 @@ const {
   updateHouse,
 } = require('../logic/houses');
 
+// Get a list of all the houses 
 router.get('/', async (req, res) => {
   try {
     const houses = await getAllHouses();
@@ -19,6 +20,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get a house by id
 router.get('/byId/:id', async (req, res) => {
   try {
     const id = req.params.id;
@@ -30,6 +32,7 @@ router.get('/byId/:id', async (req, res) => {
   }
 });
 
+// Create new house recored
 router.post('/', async (req, res) => {
   try {
     const house = req.body;
@@ -42,6 +45,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Update a house recored by the id 
 router.put('/byId/:id', async (req, res) => {
   try {
     const id = Number(req.params.id);
