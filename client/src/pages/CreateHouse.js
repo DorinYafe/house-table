@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import Button from '../components/Button/Button';
 
 function CreateHouse() {
   const navigate = useNavigate();
@@ -13,15 +14,22 @@ function CreateHouse() {
   };
 
   const onSubmit = (data) => {
-    axios.post('http://localhost:3002/houses', data).then((response) => {
-      navigate(`/house/${response.data.id}`);
-    });
+    axios
+      .post('http://localhost:3002/houses', data)
+      .then((response) => {
+        navigate(`/house/${response.data.id}`);
+      })
+      .catch((error) => console.log(error.message));
   };
 
   const validationSchema = Yup.object().shape({
-    address: Yup.string().required(),
-    currentValue: Yup.number().min(1).required(),
-    loanAmount: Yup.number().min(1).required(),
+    address: Yup.string().required('Address is required'),
+    currentValue: Yup.number()
+      .min(1, 'Current value must be greater than or equal to 1')
+      .required('Current value is required'),
+    loanAmount: Yup.number()
+      .min(1, 'Loan amount must be greater than or equal to 1')
+      .required('Loan amount is required'),
   });
 
   return (
@@ -51,7 +59,7 @@ function CreateHouse() {
             placehplder='Loan amount...'
           />
 
-          <button type='submit'>Submit</button>
+          <Button type='submit' text='Submit' />
         </Form>
       </Formik>
     </div>

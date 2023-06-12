@@ -6,11 +6,18 @@ import Card from '../components/Crad/Card';
 function Home() {
   const navigate = useNavigate();
   const [listOfHouses, setListOfHouses] = useState();
+  const [isLoading, setIsLoading] = useState(null);
+  const [isError, setIsError] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:3002/houses').then((response) => {
-      setListOfHouses(response.data);
-    });
+    axios
+      .get('http://localhost:3002/houses')
+      .then((response) => {
+        setIsLoading(true);
+        setListOfHouses(response.data);
+        setIsLoading(false);
+      })
+      .catch((error) => setIsError(error.message));
   }, []);
 
   const handleClick = (id) => {
@@ -18,7 +25,12 @@ function Home() {
   };
   return (
     <div>
-      {listOfHouses &&
+      {isError ? (
+        <div>{isError}</div>
+      ) : isLoading ? (
+        <div>Loading ...</div>
+      ) : (
+        listOfHouses &&
         listOfHouses.map((value, key) => {
           return (
             <Card
@@ -27,7 +39,8 @@ function Home() {
               onClick={() => handleClick(value?.id)}
             />
           );
-        })}
+        })
+      )}
     </div>
   );
 }
