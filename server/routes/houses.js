@@ -32,7 +32,7 @@ router.get('/byId/:id', async (req, res) => {
   }
 });
 
-// Create new house recored
+// Create new house record
 router.post('/', async (req, res) => {
   try {
     const house = req.body;
@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Update a house recored by the id
+// Update a house record by the id
 router.put('/byId/:id', async (req, res) => {
   try {
     const id = Number(req.params.id);

@@ -11,7 +11,7 @@ function House() {
 
   useEffect(() => {
     axios
-      // Get a house recored
+      // Get a house record
       .get(`http://localhost:3002/houses/byId/${id}`)
       .then((response) => {
         setIsLoading(true);

@@ -10,12 +10,12 @@ const getHouseById = async (id) => {
   return House.findByPk(id);
 };
 
-// Create new house recored
+// Create new house record
 const createHouse = async (house) => {
   return House.create(house);
 };
 
-// Update house recored by the id
+// Update house record by the id
 const updateHouse = async (currentValue, loanAmount, risk, id) => {
   return House.update(
     {
