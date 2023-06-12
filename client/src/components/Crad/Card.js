@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
+import { NumericFormat } from 'react-number-format';
 import classes from './Card.module.css';
 import Button from '../Button/Button';
 
@@ -74,9 +75,25 @@ function Card({ house, onClick }) {
       ) : (
         <>
           <div className={classes.body}>
-            Current value: {house?.currentValue}
+            Current value:
+            <NumericFormat
+              style={{ marginLeft: '0.5rem' }}
+              value={house?.currentValue}
+              displayType='text'
+              thousandSeparator={true}
+              prefix='$'
+            />
           </div>
-          <div className={classes.body}>Loan amount: {house?.loanAmount}</div>
+          <div className={classes.body}>
+            Loan amount:
+            <NumericFormat
+              style={{ marginLeft: '0.5rem' }}
+              value={house?.loanAmount}
+              displayType='text'
+              thousandSeparator={true}
+              prefix='$'
+            />
+          </div>
         </>
       )}
       <div className={classes.footer}>

@@ -26,8 +26,13 @@
 
 .house .body {
   flex: 60%;
-  display: grid;
-  place-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > span {
+    color: #000;
+  }
 }
 
 .house .footer {
