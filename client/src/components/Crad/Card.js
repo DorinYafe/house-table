@@ -30,7 +30,6 @@ function Card({ house, onClick }) {
   };
 
   const onSubmit = (data) => {
-    console.group(data);
     axios
       .put(`http://localhost:3002/houses/byId/${house?.id}`, data)
       .then(() => {
