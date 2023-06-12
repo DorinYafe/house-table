@@ -9,7 +9,7 @@ const {
   updateHouse,
 } = require('../logic/houses');
 
-// Get a list of all the houses 
+// Get a list of all the houses
 router.get('/', async (req, res) => {
   try {
     const houses = await getAllHouses();
@@ -45,12 +45,16 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Update a house recored by the id 
+// Update a house recored by the id
 router.put('/byId/:id', async (req, res) => {
   try {
     const id = Number(req.params.id);
     const { currentValue, loanAmount } = req.body;
     const risk = calculateRisk(currentValue, loanAmount);
+    if (risk > 1) {
+      res.send('Risk is too high');
+      return;
+    }
     await updateHouse(currentValue, loanAmount, risk, id);
     const updatedHouse = await getHouseById(id);
     res.json(updatedHouse);
